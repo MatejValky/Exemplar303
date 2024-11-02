@@ -6,19 +6,12 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 
 
 const app = express();
-const port = 4000;
+const port = process.env.PORT || 4000;
 
 const genAI = new GoogleGenerativeAI("AIzaSyBOww7IX8J-xq5lJQPXkKVESx6-NmMDnM8");
 const model = genAI.getGenerativeModel({ model: "gemini-1.5-pro" });
 
-const db =new pg.Client({
-  user: "postgres",
-  host: "localhost",
-  database: "World",
-  password: "MALO1324",
-  port: "5432"
-})
-db.connect();
+
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));

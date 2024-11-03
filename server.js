@@ -11,20 +11,10 @@ const port = process.env.PORT || 4000;
 const genAI = new GoogleGenerativeAI("AIzaSyBOww7IX8J-xq5lJQPXkKVESx6-NmMDnM8");
 const model = genAI.getGenerativeModel({ model: "gemini-1.5-pro" });
 
-
-
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 app.use(express.json());
 app.use(cors());
-
-
-app.get("/ai", async (req, res) => {
-    const prompt = "Write solution to 1+1";
-    const result = await model.generateContent(prompt);
-    console.log(result.response.text());
-    res.json({ text: result.response.text() });
-});
 
 app.post("/post", async (req, res) => {
   try{

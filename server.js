@@ -13,8 +13,9 @@ const model = genAI.getGenerativeModel({ model: "gemini-1.5-pro" });
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
-app.use(express.json());
 app.use(cors({ origin: '*' }));
+app.use(express.json({ limit: '10mb' })); 
+
 
 app.get("/", (req, res) => {
   res.send("Hello World!");

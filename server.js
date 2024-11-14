@@ -35,7 +35,7 @@ app.post("/post", async (req, res) => {
       };
     }
 
-    const prompt = "Answer the following question: ";
+    const prompt = req.body.prompt;
     const imagePart = fileToGenerativePart();
 
     const result = await model.generateContent([prompt, imagePart]);

@@ -24,8 +24,6 @@ app.get("/", (req, res) => {
 app.post("/post", async (req, res) => {
   try{
     const base64  = req.body.image.split(",")[1];
-    console.log(base64);
-
     function fileToGenerativePart() {
       return {
         inlineData: {
@@ -39,7 +37,6 @@ app.post("/post", async (req, res) => {
     const imagePart = fileToGenerativePart();
 
     const result = await model.generateContent([prompt, imagePart]);
-    console.log(result.response.text());
     res.json({ text: result.response.text() });
   }
   catch(err){
